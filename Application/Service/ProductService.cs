@@ -21,7 +21,7 @@ namespace ProductCatalog.Application.Service
 
         public void Delete(long ProductID)
         {
-            throw new NotImplementedException();
+            _ProductPersistance.Delete(ProductID);
         }
 
         public List<Product> FindAll()

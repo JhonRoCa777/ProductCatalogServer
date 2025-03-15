@@ -5,6 +5,8 @@ namespace ProductCatalog.Application.Ports.Out
 {
     public interface IProductPersistance
     {
+        Product Find();
+
         List<Product> FindAll();
 
         List<Product> FindAllWithoutDetails();

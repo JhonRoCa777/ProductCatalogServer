@@ -9,6 +9,9 @@ builder.Services.AddDbContextServiceConfig(builder.Configuration);
 // Agregar Filters
 builder.Services.AddFilterServiceConfig();
 
+// Agregar Inyección de Dependencias
+builder.Services.AddDependencyInjectionServiceConfig();
+
 // Agregar Controllers
 builder.Services.AddControllers();
 

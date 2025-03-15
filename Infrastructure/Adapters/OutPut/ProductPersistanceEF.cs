@@ -2,25 +2,20 @@
 using ProductCatalog.Domain.Model;
 using ProductCatalog.Infrastructure.Adapters.Out.Entity;
 
-namespace ProductCatalog.Infrastructure.Adapters.Out.Repository
+namespace ProductCatalog.Infrastructure.Adapters.OutPut
 {
     public class ProductPersistanceEF : IProductPersistance
     {
-        private readonly ProductCatalogDBContext _Context;
 
-        public ProductPersistanceEF(ProductCatalogDBContext Context)
+        public async void Delete(long ProductID)
         {
-            _Context = Context;
+            var ProductEntityFound = await _Context.ProductEntity.FindAsync(ProductID);
+            _Context.ProductEntity.Remove(ProductEntityFound!);
         }
-        public void Delete(long ProductID)
-        {
-            var ProductEntityFound = _Context.ProductEntity.Find(ProductID);
 
-            if (ProductEntityFound != null)
-            {
-                _Context.ProductEntity.Remove(ProductEntityFound);
-                _Context.SaveChangesAsync();
-            }
+        public Product Find()
+        {
+            throw new NotImplementedException();
         }
 
         public List<Product> FindAll()
