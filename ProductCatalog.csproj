@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Infrastructure\Adapters\In\" />
-    <Folder Include="Infrastructure\Adapters\Out\Mapper\" />
+    <Folder Include="Infrastructure\Adapters\Input\" />
+    <Folder Include="Infrastructure\Adapters\OutPut\Mapper\" />
   </ItemGroup>
 
 </Project>
