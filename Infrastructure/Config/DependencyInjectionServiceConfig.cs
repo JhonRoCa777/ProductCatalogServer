@@ -11,9 +11,11 @@ namespace ProductCatalog.Infrastructure.Config
         {
             // Services
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductDetailService, ProductDetailService>();
 
             // Repository
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductDetailRepository, ProductDetailRepository>();
 
             return services;
         }

@@ -2,12 +2,13 @@
 
 namespace ProductCatalog.Domain.Model.ProductModel
 {
-    public record ProductWithoutProductDetailsDTO
+    public record ProductDTO
     (
         long ID,
         string Name,
         string Description,
-        float Price
+        decimal Price,
+        int Stock
     );
 
     public record ProductWithProductDetailsDTO
@@ -15,7 +16,17 @@ namespace ProductCatalog.Domain.Model.ProductModel
         long ID,
         string Name,
         string Description,
-        float Price,
-        List<ProductDetailWithoutProductDTO> ProductDetails
+        decimal Price,
+        int Stock,
+        List<ProductDetailDTO> ProductDetails
+    );
+
+    public record ProductRequestDTO
+    (
+        long? ID,
+        string Name,
+        string Description,
+        decimal Price,
+        int Stock
     );
 }

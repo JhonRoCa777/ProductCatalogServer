@@ -1,40 +1,41 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProductCatalog.Application.Ports.Input;
-using ProductCatalog.Infrastructure.Filter;
+using ProductCatalog.Domain.Model.ProductModel;
 
 namespace ProductCatalog.Presentation
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ServiceFilter(typeof(ProductExistsFilter))]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _ProductService;
-        private readonly IMapper _Mapper;
-        public ProductController(IProductService ProductService, IMapper Mapper)
+        public ProductController(IProductService ProductService)
         {
             _ProductService = ProductService;
-            _Mapper = Mapper;
         }
 
-        [HttpGet("/full")]
+        [HttpGet("full")]
         public async Task<IActionResult> FindAllWithProductDetailsAsync()
-        {
-            return Ok(await _ProductService.FindAllWithProductDetailsAsync());
-        }
+            => Ok(await _ProductService.FindAllWithProductDetailsAsync());
 
-        [HttpGet("/")]
+        [HttpGet]
         public async Task<IActionResult> FindAllAsync()
-        {
-            return Ok(await _ProductService.FindAllAsync());
-        }
+            => Ok(await _ProductService.FindAllAsync());
+
+        [HttpGet("details/{ProductID}")]
+        public async Task<IActionResult> FindProductDetailsAsync(long ProductID)
+            => Ok(await _ProductService.FindProductDetailsAsync(ProductID));
+
+        [HttpPost()]
+        public async Task<IActionResult> CreateAsync([FromBody] ProductRequestDTO Product)
+            => Ok(await _ProductService.CreateAsync(Product));
+
+        [HttpPut("{ProductID}")]
+        public async Task<IActionResult> UpdateAsync(long ProductID, [FromBody] ProductRequestDTO Product)
+         => Ok(await _ProductService.UpdateAsync(ProductID, Product));
 
         [HttpDelete("{ProductID}")]
-        public IActionResult DeleteByID (long ProductID)
-        {
-            _ProductService.Delete(ProductID);
-            return Ok("Producto Eliminado Correctamente");
-        }
+        public async Task<IActionResult> DeleteAsync(long ProductID)
+            => Ok(await _ProductService.DeleteAsync(ProductID));
     }
 }

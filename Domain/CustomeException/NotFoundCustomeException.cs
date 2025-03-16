@@ -9,6 +9,11 @@ namespace ProductCatalog.Domain.CustomeException
 
     public class ProductNotFoundCustomeException : NotFoundCustomeException
     {
-        public ProductNotFoundCustomeException() : base("Producto no encontrado") {}
+        public ProductNotFoundCustomeException() : base("Producto NO Encontrado") {}
+    }
+
+    public class ProductDetailNotFoundCustomeException : NotFoundCustomeException
+    {
+        public ProductDetailNotFoundCustomeException() : base("Detalle de Producto NO Encontrado") { }
     }
 }

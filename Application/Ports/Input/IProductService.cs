@@ -7,14 +7,14 @@ namespace ProductCatalog.Application.Ports.Input
     {
         Task<List<ProductWithProductDetailsDTO>> FindAllWithProductDetailsAsync();
 
-        Task<List<ProductWithoutProductDetailsDTO>> FindAllAsync();
+        Task<List<ProductDTO>> FindAllAsync();
 
-        void Create(Product Product, List<ProductDetail> ProductDetails);
+        Task<ProductDTO> CreateAsync(ProductRequestDTO Product);
 
-        void Update(long ProductID, Product Product, List<ProductDetail> ProductDetails);
+        Task<ProductDTO> UpdateAsync(long ProductID, ProductRequestDTO Product);
 
-        void Delete(long ProductID);
+        Task<bool> DeleteAsync(long ProductID);
 
-        Task<List<ProductDetailWithoutProductDTO>> FindProductDetailsAsync(ProductWithoutProductDetailsDTO Product);
+        Task<List<ProductDetailDTO>> FindProductDetailsAsync(long ProductID);
     }
 }

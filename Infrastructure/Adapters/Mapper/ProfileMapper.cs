@@ -9,12 +9,20 @@ namespace ProductCatalog.Infrastructure.Adapters.Mapper
     {
         public ProfileMapper()
         {
-            CreateMap<ProductEntity, ProductWithoutProductDetailsDTO>();
+            // Product
+
+            CreateMap<ProductRequestDTO, ProductEntity>();
+
+            CreateMap<ProductEntity, ProductDTO>();
 
             CreateMap<ProductEntity, ProductWithProductDetailsDTO>()
                 .ForMember(dest => dest.ProductDetails, opt => opt.MapFrom(src => src.ProductDetails));
 
-            CreateMap<ProductDetailEntity, ProductDetailWithoutProductDTO>();
+            // ProductDetail
+
+            CreateMap<ProductDetailEntity, ProductDetailDTO>();
+
+            CreateMap<ProductDetailRequestDTO, ProductDetailEntity>();
         }
     }
 }

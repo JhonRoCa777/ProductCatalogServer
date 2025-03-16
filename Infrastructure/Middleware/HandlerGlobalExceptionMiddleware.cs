@@ -2,6 +2,8 @@
 using ProductCatalog.Domain.CustomeException;
 using System.Net;
 using System.Text.Json;
+using FluentValidation;
+using ProductCatalog.Domain.Model;
 
 namespace ProductCatalog.Infrastructure.Middleware
 {
@@ -31,29 +33,23 @@ namespace ProductCatalog.Infrastructure.Middleware
             context.Response.ContentType = "application/json";
 
             HttpStatusCode StatusCode = HttpStatusCode.InternalServerError;
-            string[] ErrorMessages = ["An unexpected error occurred."];
+            List<ErrorMessage> ErrorMessages = [new ErrorMessage {Message = "An unexpected error occurred."}];
 
             switch (ex)
             {
                 case CustomeException myEx:
                     StatusCode = myEx.ErrorCode;
-                    ErrorMessages = [myEx.Message];
+                    ErrorMessages = [new ErrorMessage {Message = myEx.Message}];
                     break;
 
-                case DbUpdateException:
+                case ValidationException myEx:
                     StatusCode = HttpStatusCode.BadRequest;
-                    ErrorMessages = ["Database update error. Please check constraints and relationships."];
-                    break;
-
-                case InvalidOperationException myEx:
-                    StatusCode = HttpStatusCode.BadRequest;
-                    ErrorMessages = [myEx.Message];
-                    break;
-
-                default:
-                    ErrorMessages = [ex.Message];
+                    ErrorMessages = myEx.Errors
+                        .Select(e => new ErrorMessage { Key = e.PropertyName, Message = e.ErrorMessage }).ToList();
                     break;
             }
+
+            if (StatusCode == HttpStatusCode.InternalServerError) throw ex;
 
             context.Response.StatusCode = (int)StatusCode;
 
