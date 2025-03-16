@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Infrastructure.Adapters.Out.Seed;
+using ProductCatalog.Infrastructure.Seed;
 
-namespace ProductCatalog.Infrastructure.Adapters.Out.Entity
+namespace ProductCatalog.Infrastructure.Adapters.Entity
 {
     public class ProductCatalogDBContext : DbContext
     {

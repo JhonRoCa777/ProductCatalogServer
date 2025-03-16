@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductCatalog.Infrastructure.Adapters.Out.Entity;
+using ProductCatalog.Infrastructure.Adapters.Entity;
 
 namespace ProductCatalog.Infrastructure.Config
 {

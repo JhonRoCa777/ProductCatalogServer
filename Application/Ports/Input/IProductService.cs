@@ -1,13 +1,13 @@
-﻿using ProductCatalog.Domain.Model;
-using System.Numerics;
+﻿using ProductCatalog.Domain.Model.ProductModel;
+using ProductCatalog.Domain.Model.ProductDetailModel;
 
-namespace ProductCatalog.Application.Ports.In
+namespace ProductCatalog.Application.Ports.Input
 {
     public interface IProductService
     {
-        List<Product> FindAll();
+        Task<List<ProductWithProductDetailsDTO>> FindAllWithProductDetailsAsync();
 
-        List<Product> FindAllWithoutDetails();
+        Task<List<ProductWithoutProductDetailsDTO>> FindAllAsync();
 
         void Create(Product Product, List<ProductDetail> ProductDetails);
 
@@ -15,6 +15,6 @@ namespace ProductCatalog.Application.Ports.In
 
         void Delete(long ProductID);
 
-        List<ProductDetail> GetProductDetails(long ProductID);
+        Task<List<ProductDetailWithoutProductDTO>> FindProductDetailsAsync(ProductWithoutProductDetailsDTO Product);
     }
 }

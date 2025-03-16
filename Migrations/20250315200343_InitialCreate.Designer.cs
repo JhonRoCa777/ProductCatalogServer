@@ -4,7 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductCatalog.Infrastructure.Adapters.Out.Entity;
+using ProductCatalog.Infrastructure.Adapters.Entity;
+
+
 
 #nullable disable
 

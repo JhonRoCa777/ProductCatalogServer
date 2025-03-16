@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace ProductCatalog.Infrastructure.Adapters.Out.Entity
+namespace ProductCatalog.Infrastructure.Adapters.Entity
 {
     [Table("ProductDetails")]
     public class ProductDetailEntity

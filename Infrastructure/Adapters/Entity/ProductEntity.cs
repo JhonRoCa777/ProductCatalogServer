@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace ProductCatalog.Infrastructure.Adapters.Out.Entity
+namespace ProductCatalog.Infrastructure.Adapters.Entity
 {
     [Table("Products")]
     public class ProductEntity
@@ -22,7 +22,7 @@ namespace ProductCatalog.Infrastructure.Adapters.Out.Entity
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
-        [DefaultValue(0)]
+        [DefaultValue(11)]
         public int Stock { get; set; }
 
         public virtual List<ProductDetailEntity>? ProductDetails { get; set; }

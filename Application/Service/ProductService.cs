@@ -1,17 +1,17 @@
-﻿using ProductCatalog.Application.Ports.In;
-using ProductCatalog.Application.Ports.Out;
-using ProductCatalog.Domain.Model;
-using System.Numerics;
+﻿using ProductCatalog.Application.Ports.Input;
+using ProductCatalog.Application.Ports.Output;
+using ProductCatalog.Domain.Model.ProductDetailModel;
+using ProductCatalog.Domain.Model.ProductModel;
 
 namespace ProductCatalog.Application.Service
 {
     public class ProductService : IProductService
     {
-        private IProductPersistance _ProductPersistance;
+        private IProductRepository _ProductRepository;
 
-        public ProductService(IProductPersistance ProductPersistance)
+        public ProductService(IProductRepository ProductRepository)
         {
-            _ProductPersistance = ProductPersistance;
+            _ProductRepository = ProductRepository;
         }
 
         public void Create(Product Product, List<ProductDetail> ProductDetails)
@@ -21,22 +21,22 @@ namespace ProductCatalog.Application.Service
 
         public void Delete(long ProductID)
         {
-            _ProductPersistance.Delete(ProductID);
+            _ProductRepository.Delete(ProductID);
         }
 
-        public List<Product> FindAll()
+        public async Task<List<ProductWithProductDetailsDTO>> FindAllWithProductDetailsAsync()
         {
-            throw new NotImplementedException();
+            return await _ProductRepository.FindAllWithProductDetailsAsync();
         }
 
-        public List<Product> FindAllWithoutDetails()
+        public async Task<List<ProductWithoutProductDetailsDTO>> FindAllAsync()
         {
-            throw new NotImplementedException();
+            return await _ProductRepository.FindAllAsync();
         }
 
-        public List<ProductDetail> GetProductDetails(long ProductID)
+        public async Task<List<ProductDetailWithoutProductDTO>> FindProductDetailsAsync(ProductWithoutProductDetailsDTO Product)
         {
-            return _ProductPersistance.GetProductDetails(ProductID);
+            return await _ProductRepository.FindProductDetailsAsync(Product);
         }
 
         public void Update(long ProductID, Product Product, List<ProductDetail> ProductDetails)

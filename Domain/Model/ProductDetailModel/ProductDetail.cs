@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using ProductCatalog.Domain.Model.ProductModel;
 
-namespace ProductCatalog.Domain.Model
+namespace ProductCatalog.Domain.Model.ProductDetailModel
+
 {
     public sealed class ProductDetail
     {
