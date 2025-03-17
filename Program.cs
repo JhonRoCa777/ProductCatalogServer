@@ -22,7 +22,19 @@ builder.Services.AddOthersServiceConfig();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Habilitar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+});
+
 var app = builder.Build();
+
+// Usar CORS en la aplicación
+app.UseCors("AllowAll");
 
 // Agregar Middlewares
 app.UseMiddleware<HandlerGlobalExceptionMiddleware>();

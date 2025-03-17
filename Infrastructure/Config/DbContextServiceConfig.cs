@@ -7,7 +7,7 @@ namespace ProductCatalog.Infrastructure.Config
     {
         public static void AddDbContextServiceConfig(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<ProductCatalogDBContext>(options =>
                 options.UseSqlServer(connectionString)
