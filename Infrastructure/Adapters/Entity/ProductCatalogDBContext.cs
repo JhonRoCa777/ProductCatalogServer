@@ -7,7 +7,10 @@ namespace ProductCatalog.Infrastructure.Adapters.Entity
     {
         public ProductCatalogDBContext(DbContextOptions<ProductCatalogDBContext> options) : base(options) { }
 
+        public DbSet<CredentialEntity> CredentialEntity { get; set; }
+
         public DbSet<ProductEntity> ProductEntity { get; set; }
+
         public DbSet<ProductDetailEntity> ProductDetailEntity { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -16,6 +19,7 @@ namespace ProductCatalog.Infrastructure.Adapters.Entity
             base.OnModelCreating(builder);
 
             // Aplicar Seeds
+            CredentialEntitySeed.Seed(builder);
             ProductEntitySeed.Seed(builder);
         }
     }

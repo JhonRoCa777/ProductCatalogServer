@@ -8,11 +8,11 @@ namespace ProductCatalog.Application.Ports.Output
 
         Task<List<ProductWithProductDetailsDTO>> FindAllWithProductDetailsAsync();
 
-        Task<List<ProductDTO>> FindAllAsync();
+        Task<List<CredentialDTO>> FindAllAsync();
 
-        Task<ProductDTO> CreateAsync(ProductRequestDTO Product);
+        Task<CredentialDTO> CreateAsync(ProductRequestDTO Product);
 
-        Task<ProductDTO> UpdateAsync(long ProductID, ProductRequestDTO Product);
+        Task<CredentialDTO> UpdateAsync(long ProductID, ProductRequestDTO Product);
 
         Task<bool> DeleteAsync(long ProductID);
     }

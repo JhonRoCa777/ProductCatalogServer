@@ -2,6 +2,7 @@
 using ProductCatalog.Application.Ports.Output;
 using ProductCatalog.Application.Service;
 using ProductCatalog.Infrastructure.Adapters.Repository;
+using ProductCatalog.Infrastructure.Adapters.Utils;
 
 namespace ProductCatalog.Infrastructure.Config
 {
@@ -9,6 +10,10 @@ namespace ProductCatalog.Infrastructure.Config
     {
         public static IServiceCollection AddDependencyInjectionServiceConfig(this IServiceCollection services)
         {
+            // Utils
+            services.AddSingleton<JwtUtil>();
+            services.AddSingleton<EncrypUtil>();
+
             // Services
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductDetailService, ProductDetailService>();

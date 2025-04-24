@@ -37,12 +37,12 @@ namespace ProductCatalog.Infrastructure.Adapters.Repository
             return _Mapper.Map<List<ProductWithProductDetailsDTO>>(Response);
         }
 
-        public async Task<List<ProductDTO>> FindAllAsync()
+        public async Task<List<CredentialDTO>> FindAllAsync()
         {
             var Response = await _Context.ProductEntity
                                         .ToListAsync();
 
-            return _Mapper.Map<List<ProductDTO>>(Response);
+            return _Mapper.Map<List<CredentialDTO>>(Response);
         }
 
         public async Task<ProductWithProductDetailsDTO> FindWithProductDetailsAsync(long ProductID)
@@ -54,17 +54,17 @@ namespace ProductCatalog.Infrastructure.Adapters.Repository
             return _Mapper.Map<ProductWithProductDetailsDTO>(Response);
         }
 
-        public async Task<ProductDTO> CreateAsync(ProductRequestDTO Product)
+        public async Task<CredentialDTO> CreateAsync(ProductRequestDTO Product)
         {
             var Response = _Mapper.Map<ProductEntity>(Product);
 
             await _Context.ProductEntity.AddAsync(Response);
             await _Context.SaveChangesAsync();
 
-            return _Mapper.Map<ProductDTO>(Response);
+            return _Mapper.Map<CredentialDTO>(Response);
         }
 
-        public async Task<ProductDTO> UpdateAsync(long ProductID, ProductRequestDTO Product)
+        public async Task<CredentialDTO> UpdateAsync(long ProductID, ProductRequestDTO Product)
         {
             var Response = await _Context.ProductEntity.FindAsync(ProductID);
 
@@ -75,7 +75,7 @@ namespace ProductCatalog.Infrastructure.Adapters.Repository
 
             await _Context.SaveChangesAsync();
 
-            return _Mapper.Map<ProductDTO>(Response);
+            return _Mapper.Map<CredentialDTO>(Response);
         }
     }
 }

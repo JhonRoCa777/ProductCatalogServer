@@ -2,7 +2,7 @@
 
 namespace ProductCatalog.Domain.Model.ProductModel
 {
-    public record ProductDTO
+    public record CredentialDTO
     (
         long ID,
         string Name,

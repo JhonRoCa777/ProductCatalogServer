@@ -19,7 +19,7 @@ namespace ProductCatalog.Application.Service
             _Validator = Validator;
         }
 
-        public async Task<ProductDTO> CreateAsync(ProductRequestDTO Product)
+        public async Task<CredentialDTO> CreateAsync(ProductRequestDTO Product)
         {
             var ValidationResult = await _Validator.ValidateAsync(Product);
 
@@ -44,7 +44,7 @@ namespace ProductCatalog.Application.Service
             return await _ProductRepository.FindAllWithProductDetailsAsync();
         }
 
-        public async Task<List<ProductDTO>> FindAllAsync()
+        public async Task<List<CredentialDTO>> FindAllAsync()
         {
             return await _ProductRepository.FindAllAsync();
         }
@@ -59,7 +59,7 @@ namespace ProductCatalog.Application.Service
             return response.ProductDetails;
         }
 
-        public async Task<ProductDTO> UpdateAsync(long ProductID, ProductRequestDTO Product)
+        public async Task<CredentialDTO> UpdateAsync(long ProductID, ProductRequestDTO Product)
         {
             var ValidationResult = await _Validator.ValidateAsync(Product);
 
